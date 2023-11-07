@@ -19,13 +19,38 @@ User.destroy_all
   last_name = Faker::Name.last_name
   email = "#{first_name.downcase}.#{last_name.downcase}@yopmail.com"
   description = Faker::Lorem.sentence(word_count: 15)
+ 
 
   User.create!(
     first_name: first_name,
     last_name: last_name,
     email: email,
-    description: description
+    description: description,
+    password: "password"
   )
 end
 
 puts "Les users ont été créés"
+
+# Création de 5 events
+5.times do
+  Event.create(
+    start_date: Faker::Time.between(from: DateTime.now, to: DateTime.now + 60), 
+    duration: [15, 30, 60, 90, 120].sample, 
+    title: Faker::Lorem.sentence(word_count: 3), 
+    description: Faker::Lorem.characters, 
+    price: Faker::Number.within(range: 1..100),
+    location: Faker::Address.city)
+end
+
+puts "Les events ont été créés"
+
+# Création de 15 attendances
+15.times do 
+  Attendance.create(
+    stripe_customer_id: "stringtest",
+    user_id: User.all.sample.id, 
+    event_id: Event.all.sample.id)
+end
+
+puts "Les attendances ont été créés"
