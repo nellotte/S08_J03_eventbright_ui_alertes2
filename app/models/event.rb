@@ -2,6 +2,8 @@ class Event < ApplicationRecord
   has_many :attendances
   has_many :users, through: :attendances
 
+  belongs_to :admin, class_name: 'User', foreign_key: 'admin_id'
+
   validates :start_date, presence: true
   #code pour indiquer pas de modif ou créa dans le passé
   validate :start_date_in_future

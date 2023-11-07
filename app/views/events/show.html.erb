@@ -24,9 +24,8 @@
     <p class="card-text">Durée : <%= @event.duration %> minutes</p>
 
     <!-- nombre de patricipants -->
-    <p class="card-text">Participants: <p class="card-text">Participants: <%= @event.users.count %></p>
+     <p class="card-text">Participants: <%= @event.users.count %></p>
     
-
     
     <!-- Prix de l'événement -->
     <p class="card-text">Prix : <%= number_to_currency(@event.price) %></p>
@@ -34,18 +33,22 @@
 
     
     <!-- Bouton "Modifier" -->
-    <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-primary" %>
+    <% if current_user == @event.admin %>
+      <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-primary" %>
+    <% end %>
     
     <!-- Bouton "Participer" -->
     <%= link_to "Participer", 'new_event_attendance_path(@event)', class: "btn btn-success" %>
     
     <!-- Bouton "Supprimer" -->
-    <%= link_to "Supprimer", @event, method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet événement ?" }, class: "btn btn-danger" %>
+     <% if current_user == @event.admin %>
+      <%= link_to "Supprimer", @event, method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet événement ?" }, class: "btn btn-danger" %>
+    <% end %>
 
     <!-- créé par -->
   </div>
   <div class="card-footer text-body-secondary">
-    <p class="card-text">Créé par: </p>
+    <p class="card-text">Créé par:  </p>
   </div>
 </div>
 
