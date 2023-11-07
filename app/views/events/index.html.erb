@@ -1,36 +1,41 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Events</h1>
 
-<%= link_to "Proposer un évènement", new_event_path %>
 
-<div class="row">
-  <% if user_signed_in? %>
-    <% @events.each do |event| %>
-      <div class="col-md-4">
-        <div class="card mb-3" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title"><%= event.title %></h5>
-            <p class="card-text"><%= event.description.truncate_words(10) %></p>
-            <p class="card-text">Date: <%= event.start_date.strftime('%d %B %Y') %></p>
-            <%= link_to "Voir le détail", event_path(event), class: "btn btn-primary" %>
-          </div>
+      <!-- Main jumbotron for a primary marketing message or call to action -->
+      <div class="jumbotron">
+        <div class="container">
+          <h1 class="display-3">Welcome sur Eventbright THP!</h1>
+          <p>Ce site rassemble tous les évènements autour de chez toi. Inscris toi, participe et amuse toi !!</p>
+          <p><%= link_to "Proposer un évènement", new_event_path, class: "btn btn-primary" %> </p>
         </div>
       </div>
-    <% end %>
-  <% else %>
-    <% @events.first(3).each do |event| %>
-      <div class="col-md-4">
-        <div class="card mb-3" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title"><%= event.title %></h5>
-            <p class="card-text"><%= event.description.truncate_words(10) %></p>
-            <p class="card-text">Date: <%= event.start_date.strftime('%d %B %Y') %></p>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
-</div>
 
+      <div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
+    <% if user_signed_in? %>
+      <% @events.each do |event| %>
+        <div class="col-md-4">
+          <h2><%= event.title %></h2>
+          <p><%= event.description.truncate_words(10) %> </p>
+          <p><%= link_to "Voir le détail", event_path(event), class: "btn btn-secondary" %> </p>
+          <p>Date: <%= event.start_date.strftime('%d %B %Y') %></p>
+        </div>
+      <% end %>
+    <% else %>
+      <% @events.first(3).each do |event| %>
+        <div class="col-md-4">
+          <h2><%= event.title %></h2>
+          <p><%= event.description.truncate_words(10) %> </p>
+          <p>Date: <%= event.start_date.strftime('%d %B %Y') %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <hr>
+</div> <!-- /container -->
+
+
+    
 
