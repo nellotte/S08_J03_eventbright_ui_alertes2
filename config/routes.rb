@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  get 'static_pages/index'
+  root 'static_pages#index'
   get 'static_pages/secret'
-  devise_for :users
   resources :events
+  devise_for :users
+  resources :users, only: [:show]
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -10,5 +12,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root to: 'static_pages#index'
+  #root to: 'static_pages#index'
 end
