@@ -12,13 +12,15 @@ require 'faker'
 Faker::Config.locale = 'fr'
 
 User.destroy_all
+Event.destroy_all
+Attendance.destroy_all
 
 # Création de 10 utilisateurs
 10.times do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
   email = "#{first_name.downcase}.#{last_name.downcase}@yopmail.com"
-  description = Faker::Lorem.sentence(word_count: 15)
+  description = Faker::Quote.yoda
  
 
   User.create!(
@@ -33,12 +35,12 @@ end
 puts "Les users ont été créés"
 
 # Création de 5 events
-5.times do
+10.times do
   Event.create(
     start_date: Faker::Time.between(from: DateTime.now, to: DateTime.now + 60), 
     duration: [15, 30, 60, 90, 120].sample, 
-    title: Faker::Lorem.sentence(word_count: 3), 
-    description: Faker::Lorem.characters, 
+    title: Faker::Movie.title, # Utilise le titre d'un film aléatoire
+    description: Faker::Movie.quote, # Utilise le résumé d'un film aléatoire
     price: Faker::Number.within(range: 1..100),
     location: Faker::Address.city)
 end
@@ -46,7 +48,7 @@ end
 puts "Les events ont été créés"
 
 # Création de 15 attendances
-15.times do 
+50.times do 
   Attendance.create(
     stripe_customer_id: "stringtest",
     user_id: User.all.sample.id, 

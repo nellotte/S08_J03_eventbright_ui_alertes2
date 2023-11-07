@@ -10,9 +10,23 @@
 
      <!-- Ville de l'événement -->
     <p class="card-text">Ville : <%= @event.location %></p>
-    
+
+    <!-- date de début -->
+     <p class="card-text">Date de début: <%= @event.start_date.strftime("%d/%m/%Y") %></p>
+
+     <!-- heure de début -->
+     <p class="card-text">Heure de début: <%= @event.start_date.strftime("%H:%M") %></p>
+
+    <!--heure de fin -->
+    <p class="card-text">Heure de fin: <%= (@event.start_date + @event.duration.minutes).strftime("%H:%M") %></p>
+
     <!-- Durée de l'événement -->
     <p class="card-text">Durée : <%= @event.duration %> minutes</p>
+
+    <!-- nombre de patricipants -->
+    <p class="card-text">Participants: <p class="card-text">Participants: <%= @event.users.count %></p>
+    
+
     
     <!-- Prix de l'événement -->
     <p class="card-text">Prix : <%= number_to_currency(@event.price) %></p>
@@ -27,9 +41,11 @@
     
     <!-- Bouton "Supprimer" -->
     <%= link_to "Supprimer", @event, method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer cet événement ?" }, class: "btn btn-danger" %>
+
+    <!-- créé par -->
   </div>
   <div class="card-footer text-body-secondary">
-    <%= "Date: " + @event.start_date.strftime('%d %B %Y') %>
+    <p class="card-text">Créé par: </p>
   </div>
 </div>
 
