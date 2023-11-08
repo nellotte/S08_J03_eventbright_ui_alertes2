@@ -1,9 +1,21 @@
 Rails.application.routes.draw do
+
   root 'events#index'
   get 'static_pages/secret'
   resources :events
   devise_for :users
   resources :users, only: [:show]
+
+  resources :charges
+
+  #root 'orders#new'
+  resources :orders, only: [:new, :create]
+
+  scope '/checkout' do
+    post 'create', to: 'checkout#create', as: 'checkout_create'
+    get 'success', to: 'checkout#success', as: 'checkout_success'
+    get 'cancel', to: 'checkout#cancel', as: 'checkout_cancel'
+end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

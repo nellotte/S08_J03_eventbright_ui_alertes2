@@ -5,7 +5,11 @@
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
         <div class="container">
+           <% if user_signed_in? %>
+            <h1 class="display-3">Welcome <%= current_user.first_name %>!</h1>
+           <% else %>
           <h1 class="display-3">Welcome sur Eventbright THP!</h1>
+            <% end %>
           <p>Ce site rassemble tous les évènements autour de chez toi. Inscris toi, participe et amuse toi !!</p>
           <p><%= link_to "Proposer un évènement", new_event_path, class: "btn btn-primary" %> </p>
         </div>

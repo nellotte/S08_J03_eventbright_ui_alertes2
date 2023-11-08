@@ -11,15 +11,17 @@
 require 'faker'
 Faker::Config.locale = 'fr'
 
-User.destroy_all
 Event.destroy_all
 Attendance.destroy_all
+User.destroy_all
+
+
 
 # Création de 10 utilisateurs
 10.times do
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
-  email = "#{first_name.downcase}.#{last_name.downcase}@yopmail.com"
+  email = Faker::Internet.email
   description = Faker::Quote.yoda
  
 
@@ -34,7 +36,7 @@ end
 
 puts "Les users ont été créés"
 
-# Création de 5 events
+# Création de 10 events
 10.times do
   Event.create(
     start_date: Faker::Time.between(from: DateTime.now, to: DateTime.now + 60), 
@@ -42,7 +44,8 @@ puts "Les users ont été créés"
     title: Faker::Movie.title, # Utilise le titre d'un film aléatoire
     description: Faker::Movie.quote, # Utilise le résumé d'un film aléatoire
     price: Faker::Number.within(range: 1..100),
-    location: Faker::Address.city)
+    location: Faker::Address.city,
+    admin_id: User.all.sample.id)
 end
 
 puts "Les events ont été créés"

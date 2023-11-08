@@ -22,6 +22,7 @@ class EventsController < ApplicationController
 
   # POST /events or /events.json
   def create
+    puts "Current User: #{current_user.inspect}"
     @event = Event.new(event_params)
     @event.admin = current_user
 
