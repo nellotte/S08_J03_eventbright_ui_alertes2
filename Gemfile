@@ -72,3 +72,7 @@ gem "faker"
 gem "table_print"
 gem "letter_opener"
 gem "dotenv-rails"
+
+group :development do
+  gem 'letter_opener'
+end

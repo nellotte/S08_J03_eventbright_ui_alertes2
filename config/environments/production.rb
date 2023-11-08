@@ -1,7 +1,5 @@
 require "active_support/core_ext/integer/time"
 
-
-
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -74,6 +72,8 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "devise_2_production"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { :host => 'https://devise-eventbright2-f086dfaa3cd2.herokuapp.com/' }
+
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -97,5 +97,4 @@ Rails.application.configure do
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
 
-  config.action_mailer.default_url_options = { :host => 'devise-eventbright2.herokuapp.com' }
 end
