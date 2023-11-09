@@ -2,7 +2,8 @@
  <p>Nous avons bien reçu votre paiement de <%= number_to_currency(@payment_intent.amount_received / 100.0, unit: "€", separator: ",", delimiter: "", format: "%n %u") %>.</p> 
  <p>Le statut de votre paiement est : <%= @payment_intent.status %>.</p> 
  <p>Payment Intent ID: <%= @payment_intent.id %></p>
- </div>
+ <p> <%= @list_line_items %></p>
+ <p>Event ID: <%= @event_id %></p>
 
  
  

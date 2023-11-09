@@ -1,6 +1,7 @@
 class CheckoutController < ApplicationController
   def create
     @total = params[:total].to_d
+    @event_id = params[:event_id]
     @session = Stripe::Checkout::Session.create(
       payment_method_types: ['card'],
       line_items: [
@@ -15,7 +16,11 @@ class CheckoutController < ApplicationController
           quantity: 1
         },
       ],
+      metadata: {
+        event_id: @event_id
+      },
       mode: 'payment',
+      customer_email: current_user.email, 
       success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: checkout_cancel_url
     )
@@ -25,8 +30,15 @@ class CheckoutController < ApplicationController
   def success
     @session = Stripe::Checkout::Session.retrieve(params[:session_id])
     @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent)
+    @list_line_items = Stripe::Checkout::Session.list_line_items(params[:session_id])
+    @event_id = @session.metadata.event_id 
+    @attendance = 
+     
+
+
+
   end
-  
+
   def cancel
   end
 
