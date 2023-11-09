@@ -39,7 +39,7 @@
     
     <!-- Bouton "Participer" -->
     <% if current_user != @event.admin && current_user != current_user.participating?(@event) %>
-    <%= button_to "Passer commande (NEXT GEN)", checkout_create_path(total: @event.price), class: "btn btn-primary", remote: true %>
+    <%= button_to "Passer commande (NEXT GEN)", checkout_create_path(total: @event.price, event_id: @event.id),  class: "btn btn-primary", data: {turbo: false} %>
     <%= link_to "Participer", 'new_event_attendance_path(@event)', class: "btn btn-success" %>
     <% end %>
     
