@@ -9,6 +9,12 @@ class EventsController < ApplicationController
   # GET /events/1 or /events/1.json
   def show
     @event = Event.find(params[:id])
+     # Vérifier si l'événement est validé ou si l'utilisateur est un administrateur du site
+     if !@event.validated? && !current_user&.is_website_administrator?
+      flash[:alert] = "Cet événement n'est pas encore validé."
+      redirect_to events_path
+      return
+    end
   end
 
   # GET /events/new

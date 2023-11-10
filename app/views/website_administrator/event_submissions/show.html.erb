@@ -14,12 +14,18 @@
     <p class="card-text">Heure de fin: <%= (@event.start_date + @event.duration.minutes).strftime("%H:%M") %></p>
     <!-- Durée de l'événement -->
     <p class="card-text">Durée : <%= @event.duration %> minutes</p>
+        <!-- Prix de l'événement -->
+    <p class="card-text">Prix : <%= number_to_currency(@event.price) %></p>
     <!-- nombre de participants -->
     <p class="card-text">Participants: <%= @event.users.count %></p>
-    <!-- Prix de l'événement -->
-    <p class="card-text">Prix : <%= number_to_currency(@event.price) %></p>
-  </div>
 
+      <!-- Participants de l'événement -->
+        <p class="card-text"> Liste des Participants : </p>
+        <% @event.users.each do |participant| %>
+          <li><%= participant.first_name %>  <%= participant.last_name %></li>
+        <% end %>
+  </div>
+<div class="mb-4 text-center">
 <% if @event.validated.nil? %>
   <%= button_to 'Valider', { action: 'update', id: @event.id, event: { validated: true } }, method: :patch, class: 'btn btn-success' %>
   <%= button_to 'Refuser', { action: 'update', id: @event.id, event: { validated: false } }, method: :patch, class: 'btn btn-danger' %>
@@ -28,9 +34,10 @@
 <% elsif @event.validated == true %>
   <%= button_to 'Refuser', { action: 'update', id: @event.id, event: { validated: false } }, method: :patch, class: 'btn btn-danger' %>
 <% end %>
-
-<%= link_to 'Retour', website_administrator_event_submissions_path %>
-
+</div>
+<div class="mb-4">
+  <%= link_to 'Retour', website_administrator_event_submissions_path %>
+</div>
 
 
 
