@@ -1,0 +1,2 @@
+module WebsiteAdminitrator::UserHelper
+end

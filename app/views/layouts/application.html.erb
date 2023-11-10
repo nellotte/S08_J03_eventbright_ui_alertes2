@@ -39,28 +39,28 @@
               </a>
               <ul class="dropdown-menu">
                 <% if user_signed_in? %>
-                <li>
-                  <%= link_to "Mon profil", user_path(current_user), :class=>"dropdown-item" %>
-                </li>
-                <li>
-                  <%= link_to "Editer profil", edit_user_registration_path, :class=>"dropdown-item" %>
-                </li>
-                <li>
-                  <%= button_to "Se déconnecter", destroy_user_session_path, method: :delete, data: {turbo_method: :delete}, :class=>"dropdown-item" %>
-                </li>
-                
-
-
-              <% else %>
-                <li>    
-                  <%= link_to "Se connecter", new_user_session_path, :class=>"dropdown-item" %>
-                </li>
-
-                <li>
-                  <%= link_to "S'inscrire", new_user_registration_path, :class=>"dropdown-item" %>
-                </li>
-
-              <% end %>
+                  <li>
+                    <%= link_to "Mon profil", user_path(current_user), :class=>"dropdown-item" %>
+                  </li>
+                  <li>
+                    <%= link_to "Editer profil", edit_user_registration_path, :class=>"dropdown-item" %>
+                  </li>
+                  <li>
+                    <%= button_to "Se déconnecter", destroy_user_session_path, method: :delete, data: {turbo_method: :delete}, :class=>"dropdown-item" %>
+                  </li>
+                  <% if current_user.is_website_administrator? %>
+                    <li>
+                      <%= link_to "Administration", website_administrator_users_path, :class=>"dropdown-item" %>
+                    </li>
+                  <% end %>
+                <% else %>
+                  <li>    
+                    <%= link_to "Se connecter", new_user_session_path, :class=>"dropdown-item" %>
+                  </li>
+                  <li>
+                    <%= link_to "S'inscrire", new_user_registration_path, :class=>"dropdown-item" %>
+                  </li>
+                <% end %>
               </ul>
             </li>
           </ul>

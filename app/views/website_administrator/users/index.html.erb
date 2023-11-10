@@ -1,0 +1,13 @@
+<h1>Dashboard Website Administration</h1>
+
+<h2>Gestion des Utilisateurs</h2>
+
+<% @users.each do |user| %>
+    <li>
+      <%= "#{user.first_name} #{user.last_name}" %> 
+            <%= link_to 'Voir le Détail', website_administrator_user_path(user) %>
+
+    </li>
+  <% end %>
+
+

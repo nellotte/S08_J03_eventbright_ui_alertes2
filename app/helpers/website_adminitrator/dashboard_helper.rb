@@ -1,0 +1,2 @@
+module WebsiteAdminitrator::DashboardHelper
+end

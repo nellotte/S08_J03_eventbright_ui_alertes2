@@ -1,0 +1,29 @@
+<h1>Modifier le Profil de <%= @user.first_name %> <%= @user.last_name %></h1>
+
+<%= form_for([:website_administrator, @user], url: website_administrator_user_path(@user), method: :patch) do |f| %>
+  <div>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <%= f.label :is_website_administrator %>
+    <%= f.check_box :is_website_administrator %>
+  </div>
+
+  <div>
+    <%= f.submit 'Enregistrer les Modifications' %>
+  </div>
+<% end %>
+
+<%= link_to 'Retour', website_administrator_user_path(@user) %>

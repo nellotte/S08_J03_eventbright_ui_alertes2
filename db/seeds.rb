@@ -30,11 +30,21 @@ User.destroy_all
     last_name: last_name,
     email: email,
     description: description,
-    password: "password"
+    password: "password",
+    is_website_administrator: false
   )
 end
 
 puts "Les users ont été créés"
+
+User.create!(
+    first_name: "Nelly",
+    last_name: "Guerin",
+    email: "nelly.guerin@gmail.com",
+    description: "C'est moi la bosse du site eventbright",
+    password: "password",
+    is_website_administrator: true
+  )
 
 # Création de 10 events
 10.times do
