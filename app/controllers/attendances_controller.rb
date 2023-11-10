@@ -14,11 +14,4 @@ class AttendancesController < ApplicationController
     @attendance = Attendance.new
   end
 
-  
-  private
-
-  def
-
-  end
-
 end
