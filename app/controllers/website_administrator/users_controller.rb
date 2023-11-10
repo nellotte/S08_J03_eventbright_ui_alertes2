@@ -1,5 +1,5 @@
 class WebsiteAdministrator::UsersController < ApplicationController
-  #before_action :
+  before_action :authenticate_admin!
 
   def index
     @users = User.all

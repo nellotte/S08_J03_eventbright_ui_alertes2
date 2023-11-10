@@ -1,0 +1,38 @@
+  <div class="card-header">
+    <%= @event.title %>
+  </div>
+ <div class="card-body">
+    <h5 class="card-title">Description</h5>
+    <p class="card-text"><%= @event.description %></p>
+    <!-- Ville de l'événement -->
+    <p class="card-text">Ville : <%= @event.location %></p>
+    <!-- date de début -->
+    <p class="card-text">Date de début: <%= @event.start_date.strftime("%d/%m/%Y") %></p>
+    <!-- heure de début -->
+    <p class="card-text">Heure de début: <%= @event.start_date.strftime("%H:%M") %></p>
+    <!--heure de fin -->
+    <p class="card-text">Heure de fin: <%= (@event.start_date + @event.duration.minutes).strftime("%H:%M") %></p>
+    <!-- Durée de l'événement -->
+    <p class="card-text">Durée : <%= @event.duration %> minutes</p>
+    <!-- nombre de participants -->
+    <p class="card-text">Participants: <%= @event.users.count %></p>
+    <!-- Prix de l'événement -->
+    <p class="card-text">Prix : <%= number_to_currency(@event.price) %></p>
+  </div>
+
+<% if @event.validated.nil? %>
+  <%= button_to 'Valider', { action: 'update', id: @event.id, event: { validated: true } }, method: :patch, class: 'btn btn-success' %>
+  <%= button_to 'Refuser', { action: 'update', id: @event.id, event: { validated: false } }, method: :patch, class: 'btn btn-danger' %>
+<% elsif @event.validated == false %>
+  <%= button_to 'Valider', { action: 'update', id: @event.id, event: { validated: true } }, method: :patch, class: 'btn btn-success' %>
+<% elsif @event.validated == true %>
+  <%= button_to 'Refuser', { action: 'update', id: @event.id, event: { validated: false } }, method: :patch, class: 'btn btn-danger' %>
+<% end %>
+
+<%= link_to 'Retour', website_administrator_event_submissions_path %>
+
+
+
+
+
+

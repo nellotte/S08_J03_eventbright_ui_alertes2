@@ -31,7 +31,7 @@
               <%= link_to "Accueil", events_path, :class=>"nav-link" %>
             </li>
             <li class="nav-item">
-              <%= link_to "Evenements", new_event_path, :class=>"nav-link" %>
+              <%= link_to "Proposer un évenement", new_event_path, :class=>"nav-link" %>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -50,7 +50,10 @@
                   </li>
                   <% if current_user.is_website_administrator? %>
                     <li>
-                      <%= link_to "Administration", website_administrator_users_path, :class=>"dropdown-item" %>
+                      <%= link_to "Administration des utilisateurs", website_administrator_users_path, :class=>"dropdown-item" %>
+                    </li>
+                    <li>
+                      <%= link_to "Administration des évènements", website_administrator_event_submissions_path, :class=>"dropdown-item" %>
                     </li>
                   <% end %>
                 <% else %>

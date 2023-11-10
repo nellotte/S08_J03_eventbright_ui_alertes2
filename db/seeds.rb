@@ -46,7 +46,7 @@ User.create!(
     is_website_administrator: true
   )
 
-# Création de 10 events
+# Création de 10 events validés
 10.times do
   Event.create(
     start_date: Faker::Time.between(from: DateTime.now, to: DateTime.now + 60), 
@@ -55,12 +55,26 @@ User.create!(
     description: Faker::Movie.quote, # Utilise le résumé d'un film aléatoire
     price: Faker::Number.within(range: 1..100),
     location: Faker::Address.city,
-    admin_id: User.all.sample.id)
+    admin_id: User.all.sample.id,
+    validated: true)
+end
+
+# Création de 5 events pending
+5.times do
+  Event.create(
+    start_date: Faker::Time.between(from: DateTime.now, to: DateTime.now + 60), 
+    duration: [15, 30, 60, 90, 120].sample, 
+    title: Faker::Movie.title, # Utilise le titre d'un film aléatoire
+    description: Faker::Movie.quote, # Utilise le résumé d'un film aléatoire
+    price: Faker::Number.within(range: 1..100),
+    location: Faker::Address.city,
+    admin_id: User.all.sample.id,
+    validated: nil)
 end
 
 puts "Les events ont été créés"
 
-# Création de 15 attendances
+# Création de 50 attendances
 50.times do 
   Attendance.create(
     stripe_customer_id: "stringtest",

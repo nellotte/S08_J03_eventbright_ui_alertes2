@@ -20,22 +20,24 @@
   <div class="row">
     <% if user_signed_in? %>
       <% @events.each do |event| %>
-        <div class="col-md-4">
-          <h2><%= event.title %></h2>
-          <p><%= event.description.truncate_words(10) %> </p>
-          <p><%= link_to "Voir le détail", event_path(event), class: "btn btn-secondary" %> </p>
-          <p>Date: <%= event.start_date.strftime('%d %B %Y') %></p>
-        </div>
+        <% if event.validated? %>
+          <div class="col-md-4">
+            <h2><%= event.title %></h2>
+            <p><%= event.description.truncate_words(10) %> </p>
+            <p><%= link_to "Voir le détail", event_path(event), class: "btn btn-secondary" %> </p>
+            <p>Date: <%= event.start_date.strftime('%d %B %Y') %></p>
+          </div>
+         <% end %>
+        <% end %>
+      <% else %>
+        <% @events.first(3).each do |event| %>
+          <div class="col-md-4">
+            <h2><%= event.title %></h2>
+            <p><%= event.description.truncate_words(10) %> </p>
+            <p>Date: <%= event.start_date.strftime('%d %B %Y') %></p>
+          </div>
+        <% end %>
       <% end %>
-    <% else %>
-      <% @events.first(3).each do |event| %>
-        <div class="col-md-4">
-          <h2><%= event.title %></h2>
-          <p><%= event.description.truncate_words(10) %> </p>
-          <p>Date: <%= event.start_date.strftime('%d %B %Y') %></p>
-        </div>
-      <% end %>
-    <% end %>
   </div>
   <hr>
 </div> <!-- /container -->

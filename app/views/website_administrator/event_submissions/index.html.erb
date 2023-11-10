@@ -1,0 +1,23 @@
+<h1>Dashboard Website Administration</h1>
+<div >
+
+  <h2 class="mt-4 mb-4 text-center" >Événements à Valider </h2>
+  <% @events_to_validate.each do |event| %>
+   <li> <%= event.title %> <%= link_to "Voir le détail", website_administrator_event_submission_path(event), class: "my-custom-link-style" %></li>
+  <% end %>
+</div>
+
+<div >
+  <h2 class="mt-4 mb-4 text-center" >Événements Refusés</h2>
+  <% @events_rejected.each do |event| %>
+   <li> <%= event.title %> <%= link_to "Voir le détail", website_administrator_event_submission_path(event), class: "my-custom-link-style" %></li>
+  <% end %>
+</div>
+
+<div >
+  <h2 class="mt-4 mb-4 text-center" >Événements Validés</h2>
+  <% @events_validated.each do |event| %>
+   <li> <%= event.title %> <%= link_to "Voir le détail", website_administrator_event_submission_path(event), class: "my-custom-link-style" %></li>
+  <% end %>
+</div>
+

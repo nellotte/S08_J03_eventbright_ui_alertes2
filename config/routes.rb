@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'events#index'
   get 'static_pages/secret'
   resources :events
+
   devise_for :users
   resources :users, only: [:show]
 
@@ -20,6 +21,7 @@ end
 namespace :website_administrator do
   resources :users
   root to: 'users#index'
+  resources :event_submissions
 end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
