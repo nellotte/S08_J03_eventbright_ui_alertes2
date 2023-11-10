@@ -40,7 +40,7 @@ puts "Les users ont été créés"
 User.create!(
     first_name: "Nelly",
     last_name: "Guerin",
-    email: "nelly.guerin@gmail.com",
+    email: "nelly.guerin@yopmail.com",
     description: "C'est moi la bosse du site eventbright",
     password: "password",
     is_website_administrator: true

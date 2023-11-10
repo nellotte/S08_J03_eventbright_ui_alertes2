@@ -2,6 +2,9 @@
     <%= @event.title %>
   </div>
  <div class="card-body">
+   <div class="card-footer text-body-secondary">
+    <p class="card-text">Créé par: <%= @event.admin.first_name %> <%= @event.admin.last_name %> </p>
+  </div>
     <h5 class="card-title">Description</h5>
     <p class="card-text"><%= @event.description %></p>
     <!-- Ville de l'événement -->

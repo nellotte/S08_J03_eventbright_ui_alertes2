@@ -15,14 +15,19 @@ class WebsiteAdministrator::EventSubmissionsController < ApplicationController
   end
 
   def edit
-    #  Editer l'événement à valider
+    # Editer l'événement à valider
     @event = Event.find(params[:id])
   end
 
-  def update
-    # Valide (ou pas) l'événement 
+  def update 
     @event = Event.find(params[:id])
+    # Enregistrez l'état précédent de l'événement
+    previous_status = @event.validated_before_last_save
     if @event.update(event_params)
+      # Vérifiez si l'état précédent était différent
+      if previous_status != @event.validated
+        send_status_email(@event)
+      end
       redirect_to website_administrator_event_submission_path, notice: 'Événement validé avec succès.'
     else
       render :edit
@@ -35,4 +40,11 @@ class WebsiteAdministrator::EventSubmissionsController < ApplicationController
     params.require(:event).permit(:validated)  # Ajoutez tous les autres champs que vous souhaitez mettre à jour
   end
 
+  def send_status_email(event)
+    if event.validated
+      EventMailer.event_validated(event).deliver_now
+    else
+      EventMailer.event_rejected(event).deliver_now
+    end
+  end
 end
