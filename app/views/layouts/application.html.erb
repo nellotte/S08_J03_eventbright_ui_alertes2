@@ -1,77 +1,35 @@
-<!doctype html>
-<html lang="fr" data-bs-theme="dark">
+<!DOCTYPE html>
+<html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Eventbright de Nelly</title>
+    <title>S08J02MoleculesAtomes</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-    <script src="https://js.stripe.com/v3/"></script>
   </head>
 
   <body>
+  <%= render 'layouts/navbar' %>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Eventbright</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <%= link_to "Accueil", events_path, :class=>"nav-link" %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "Proposer un évenement", new_event_path, :class=>"nav-link" %>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Mon compte
-              </a>
-              <ul class="dropdown-menu">
-                <% if user_signed_in? %>
-                  <li>
-                    <%= link_to "Mon profil", user_path(current_user), :class=>"dropdown-item" %>
-                  </li>
-                  <li>
-                    <%= link_to "Editer profil", edit_user_registration_path, :class=>"dropdown-item" %>
-                  </li>
-                  <li>
-                    <%= button_to "Se déconnecter", destroy_user_session_path, method: :delete, data: {turbo_method: :delete}, :class=>"dropdown-item" %>
-                  </li>
-                  <% if current_user.is_website_administrator? %>
-                    <li>
-                      <%= link_to "Administration des utilisateurs", website_administrator_users_path, :class=>"dropdown-item" %>
-                    </li>
-                    <li>
-                      <%= link_to "Administration des évènements", website_administrator_event_submissions_path, :class=>"dropdown-item" %>
-                    </li>
-                  <% end %>
-                <% else %>
-                  <li>    
-                    <%= link_to "Se connecter", new_user_session_path, :class=>"dropdown-item" %>
-                  </li>
-                  <li>
-                    <%= link_to "S'inscrire", new_user_registration_path, :class=>"dropdown-item" %>
-                  </li>
-                <% end %>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
 
     <%= yield %>
 
+    
+  <%= render 'layouts/footer' %>
+
+<!-- Bootstrap core JavaScript -->
+
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous" type="module"></script>
+<!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofGJopfMz+CU6F4S8BI8kRv9foPKjqS9o1" crossorigin="anonymous" type="module"></script>
+
   </body>
 </html>
+
+
+
+

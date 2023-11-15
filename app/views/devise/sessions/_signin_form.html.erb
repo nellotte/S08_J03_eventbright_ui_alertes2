@@ -1,0 +1,44 @@
+<!-- app/views/devise/sessions/_signin_form.html.erb -->
+<div class="d-flex justify-content-center align-items-center vh-70 mt-4 mb-4">
+  <div class="card border-secondary mb-3 col-md-6" style="width: 50%; min-width: 50%; padding: 20px;">
+    <div class="card-header d-flex justify-content-center align-items-center">
+      <span class="iconify" data-icon="game-icons:party-popper" style="font-size: 3rem; "></span>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title ">Connexion</h4>
+      <p class="card-text">Veuillez saisir vos identifiants pour accéder à toutes les fonctionnalité d'Eventbright</p>
+    </div>
+
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+    <div class="form-group">
+      <%= f.label :email, "Adresse email", class: "form-label mt-4" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "" %>
+      <small id="emailHelp" class="form-text text-muted">Cet email ne sera pas partagé.</small>
+    </div>
+        <% if devise_mapping.rememberable? %>
+      <div class="form-check">
+        <%= f.check_box :remember_me, class: "form-check-input" %>
+        <%= f.label :remember_me, "Se rappeler de moi", class: "form-check-label" %>
+      </div>
+     <% end %>
+
+
+      <div class="form-group">
+        <%= f.label :password, "Mot de passe", class: "form-label mt-4" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "" %>
+        <small id="emailHelp" class="form-text text-muted"><a href> Mot de plasse oublié ? </small>
+      </div>
+
+      <div class="actions">
+         <%= f.submit "Me connecter", class: "btn btn-lg btn-primary mt-4" %>
+      </div>
+
+      <div>
+        <small id="emailHelp" class="form-text text-muted">Tu n'as pas encore de compte ?  <a href> M'inscrire </small>
+      </div>
+  <% end %>
+
+  </div>
+</div>

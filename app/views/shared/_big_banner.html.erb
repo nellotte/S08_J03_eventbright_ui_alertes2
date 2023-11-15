@@ -1,0 +1,52 @@
+<header>
+  <!-- Intro settings -->
+  <style>
+    /* Default height for small devices */
+    #intro-example {
+      height: 400px;
+    }
+
+    /* Height for devices larger than 992px */
+    @media (min-width: 992px) {
+      #intro-example {
+        height: 600px;
+      }
+    }
+  </style>
+
+  <!-- Background image -->
+  <div
+    id="intro-example"
+    class="p-5 text-center bg-image position-relative"
+    style="background-image: url('<%= asset_path('medium_party_banner.jpg') %>');"
+  >
+    <div class="mask d-flex align-items-center justify-content-center w-100 h-100" style="background-color: rgba(0, 0, 0, 0.3);">
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-white my-5">
+          <% if user_signed_in? %>
+              <h1 class="display-3">Welcome <%= current_user.first_name %> sur Eventbright THP !</h1>
+          <% else %>
+            <h1 class="my-3 display-4">Eventbright THP</h1>
+          <% end %>
+            <h2 class="mb-3 h4">Le site de rencontre et des évènements au sein de la communauté THP !</h2>
+            <div class="mb-3">
+            <a
+              class="btn btn-light btn-lg m-2"
+              href="#"
+              role="button"
+              rel="nofollow"
+              target="_blank"
+            >Voir les évènements dans ma ville</a>
+            <a
+              class="btn btn-light btn-lg m-2"
+              href="#"
+              target="_blank"
+              role="button"
+            >Proposer un évènement</a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Background image -->
+</header>
